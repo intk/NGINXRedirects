@@ -68,7 +68,7 @@ def generate_final_file(roots, all_redirects):
 	final_file = args_part + noargs_part
 	print final_file
 
-if __name__ = "__main__"
+if __name__ == "__main__":
 	redirects_sorted = sorted(redirects, key=lambda x: len(x[0].split('/')), reverse=True)
 	redirect_roots = generate_args_dict(redirects_sorted)
 	generate_final_file(redirect_roots, redirects_sorted)
