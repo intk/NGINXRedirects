@@ -1,46 +1,13 @@
 # -*- coding: utf-8 -*-
 
 TEMPLATE = 'location ~ ^%s {\n\trewrite ^ %s? permanent;\n}\n'
-TEMPLATEARGS =  'location ~ ^%s {%s}\n'
-TEMPLATEINNER = "\n\tif ($args ~ %s) {\n\t\trewrite ^ %s? permanent;\n\t}\n"
+TEMPLATE_ARGS =  'location ~ ^%s {%s}\n'
+TEMPLATE_INNER = "\n\tif ($args ~ %s) {\n\t\trewrite ^ %s? permanent;\n\t}\n"
 
 
 redirects = [
-	('/tentoonstelling.php','http://www.kunsthalkade.nl/nl/nu-en-verwacht/tentoonstellingen'),
-	('/over.php?item=51','http://www.kunsthalkade.nl/nl/plan-je-bezoek/praktische-informatie'),
-	('/index.php','/http://www.kunsthalkade.nl/nl/'),
-	('/tentoonstelling.php?item=3073','http://www.kunsthalkade.nl/nl/tentoonstellingen/de-kleuren-van-de-stijl'),
-	('/over.php','http://www.kunsthalkade.nl/nl/over-kade'),
-	('/cafe.php','http://www.kunsthalkade.nl/nl/plan-je-bezoek/kadecafe'),
-	('/tentoonstelling.php?item=3073&offset=0','http://www.kunsthalkade.nl/nl/tentoonstellingen/de-kleuren-van-de-stijl'),
-	('/tentoonstelling.php?item=3072','http://www.kunsthalkade.nl/nl/tentoonstellingen/goed-gemaakt-ode-aan-het-maakproces'),
-	('/agenda.php','http://www.kunsthalkade.nl/nl/nu-en-verwacht'),
-	('/tentoonstelling.php?item=2965','http://www.kunsthalkade.nl/nl/tentoonstellingen/self-fiction-dubbelsolo-david-altmejd-friedrich-kunath'),
-	('/shop.php','http://www.kunsthalkade.nl/nl/plan-je-bezoek/kadeshop'),
-	('/over.php?item=91','http://www.kunsthalkade.nl/nl/plan-je-bezoek/praktische-informatie'),
-	('/tentoonstelling.php?item=3072&offset=0','http://www.kunsthalkade.nl/nl/tentoonstellingen/goed-gemaakt-ode-aan-het-maakproces'),
-	('/agendaItem.php?item=3134&periode=&genre=','http://www.kunsthalkade.nl/nl/nu-en-verwacht'),
-	('/over.php?item=54','http://www.kunsthalkade.nl/nl/over-kade/contact'),
-	('/tentoonstelling.php?item=2515&offset=0','http://www.kunsthalkade.nl/nl/online-archief'),
-	('/rondleidingen.php','http://www.kunsthalkade.nl/nl/over-kade'),
-	('/educatie.php','http://www.kunsthalkade.nl/nl/over-kade'),
-	('/tentoonstelling.php?item=2965&offset=0','http://www.kunsthalkade.nl/nl/tentoonstellingen/self-fiction-dubbelsolo-david-altmejd-friedrich-kunath'),
-	('/beeldbank.php','http://www.kunsthalkade.nl/nl/online-archief'),
-	('/tentoonstelling.php?item=3191&offset=0','http://www.kunsthalkade.nl/nl/tentoonstellingen/vuur'),
-	('/tentoonstelling.php?item=680','http://www.kunsthalkade.nl/nl/tentoonstellingen/shadowdance'),
-	('/tentoonstelling.php?item=3191','http://www.kunsthalkade.nl/nl/tentoonstellingen/vuur'),
-	('/tentoonstelling.php?item=2047','http://www.kunsthalkade.nl/nl/tentoonstellingen/now-japan'),
-	('/agendaItem.php?item=3095','http://www.kunsthalkade.nl/nl/nu-en-verwacht/activiteiten/'),
-	('/nieuws.php','http://www.kunsthalkade.nl/nl/over-kade/nieuws'),
-	('/agendaItem.php?item=3138','http://www.kunsthalkade.nl/nl/nu-en-verwacht'),
-	('/cafe.php?item=17','http://www.kunsthalkade.nl/nl/plan-je-bezoek/kadecafe'),
-	('/over.php?item=22','http://www.kunsthalkade.nl/nl/over-kade'),
-	('/tentoonstelling.php?item=2728&offset=0','http://www.kunsthalkade.nl/nl/tentoonstellingen/de-loop-der-dingen-over-oorzaak-gevolg'),
-	('/educatie.php?item=2125','http://www.kunsthalkade.nl/nl/nu-en-verwacht/voor-kinderen'),
-	('/nieuws.php?item=3140','http://www.kunsthalkade.nl/nl/over-kade/nieuws'),
-	('/cafe.php?item=687','http://www.kunsthalkade.nl/nl/plan-je-bezoek/kadecafe'),
-	('/tentoonstelling.php?item=2691','http://www.kunsthalkade.nl/nl/tentoonstellingen/expeditie-landart'),
-	('/nieuws.php?item=3166','http://www.kunsthalkade.nl/nl/tentoonstellingen/de-kleuren-van-de-stijl')
+	('/oldurl.php','http://www.example.com/new/path'),
+	('/oldurl.php?item=51','http://www.example.com/new/path/item'),
 ]
 
 def has_args(url):
@@ -77,10 +44,10 @@ def generate_args_part(roots):
 		all_args = ""
 
 		for arg in value:
-			arg_template = TEMPLATEINNER %(arg[0], arg[1])
+			arg_template = TEMPLATE_INNER %(arg[0], arg[1])
 			all_args += arg_template
 
-		args_template = TEMPLATEARGS % (key, all_args)
+		args_template = TEMPLATE_ARGS % (key, all_args)
 		args_part += args_template
 
 	return args_part
