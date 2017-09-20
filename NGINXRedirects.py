@@ -61,8 +61,6 @@ def generate_noargs_part(all_redirects):
 			noargs_part += redirect_template
 	return noargs_part
 
-
-
 def generate_final_file(roots, all_redirects):
 	args_part = generate_args_part(roots)
 	noargs_part = generate_noargs_part(all_redirects)
@@ -70,10 +68,10 @@ def generate_final_file(roots, all_redirects):
 	final_file = args_part + noargs_part
 	print final_file
 
-
-redirects_sorted = sorted(redirects, key=lambda x: len(x[0].split('/')), reverse=True)
-redirect_roots = generate_args_dict(redirects_sorted)
-generate_final_file(redirect_roots, redirects_sorted)
+if __name__ = "__main__"
+	redirects_sorted = sorted(redirects, key=lambda x: len(x[0].split('/')), reverse=True)
+	redirect_roots = generate_args_dict(redirects_sorted)
+	generate_final_file(redirect_roots, redirects_sorted)
 
 
 
