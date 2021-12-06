@@ -56,7 +56,9 @@ def generate_noargs_part(all_redirects):
 	noargs_part = ""
 	for redirect in all_redirects:
 		if not has_args(redirect[0]):
-			redirect_template = TEMPLATE %(redirect[0], redirect[1])
+			if original_url[-1] == "/":
+				original_url = original_url[:-1]
+			redirect_template = TEMPLATE %(original_url, redirect[1])
 			noargs_part += redirect_template
 	return noargs_part
 
